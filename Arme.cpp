@@ -6,39 +6,52 @@
 /*   By: matheme <matheme@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:45:54 by matheme           #+#    #+#             */
-/*   Updated: 2019/12/10 19:06:33 by matheme          ###   ########.fr       */
+/*   Updated: 2019/12/16 17:29:53 by matheme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Arme.h"
-#include <iostream>
-using namespace std;
 
-Arme::Arme()
+//Constructeur par default
+Arme::Arme() : Object("poing")
 {
-    m_nom = "poing";
     m_degat = 5;
-    m_durabilite = 0;
+    m_durabilite = 1;
 }
 
-Arme::Arme(string nom, int degats, int durabilite)
+// Constructeur Personnalise
+Arme::Arme(std::string nom, int degats, int durabilite) : Object(nom)
 {
-    m_nom = nom;
     m_degat = degats;
     m_durabilite = durabilite;
 }
 
-void    Arme::info()
+//Desconstructeur
+Arme::~Arme(void)
 {
-    cout << m_nom << " (" << m_degat << ") " << "durabilité: " << m_durabilite;
+    
 }
 
-string    Arme::get_name()
+//ecriture
+void	Arme::durabilite(int durabilite)
 {
-    return (m_nom);
+	m_durabilite = durabilite;
 }
 
-int    Arme::get_degat()
+//lecture
+int		Arme::degat(void)
 {
    return (m_degat); 
+}
+
+int		Arme::durabilite(void)
+{
+	return (m_durabilite);
+}
+
+//affichage des variables;
+void    Arme::info()
+{
+	Object::info();
+    std::cout << "degat: " << m_degat << " durabilité: " << m_durabilite << std::endl;
 }
